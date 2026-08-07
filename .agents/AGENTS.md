@@ -85,18 +85,23 @@ This project follows a strict TDD approach. Every module is built using the
 ## Current Project State (update this section as versions are completed)
 
 ### V1: Color Palette Explorer
-- **Status:** In progress — setup and design complete, implementation not started
+- **Status:** In progress — `image_loader.py` complete with tests
 - **SRS:** `docs/srs_v1.md` ✅ Complete
 - **UML Design:** `docs/uml_design_v1.md` ✅ Approved
 - **Modules to build (in order):**
-  1. `src/v1_color_explorer/image_loader.py` — Not started
+  1. `src/v1_color_explorer/image_loader.py` — ✅ Complete (3 tests passing)
   2. `src/v1_color_explorer/region_selector.py` — Not started
   3. `src/v1_color_explorer/color_extractor.py` — Not started
   4. `src/v1_color_explorer/color_theory.py` — Not started
   5. `src/v1_color_explorer/palette_display.py` — Not started
   6. `src/v1_color_explorer/main.py` — Not started
-- **Tests:** Not started
-- **Next action:** Begin `image_loader.py` — explain concepts first, then guide Jennaya to write it
+- **Tests:**
+  - `tests/v1/test_image_loader.py` — ✅ 3 tests passing
+    - `test_load_raises_for_invalid_path`
+    - `test_load_raises_for_unsupported_format`
+    - `test_load_returns_ndarray_for_valid_image`
+- **Branch:** `feature/image-loader` — ready to commit and merge
+- **Next action:** Begin `region_selector.py` — explain concepts first, then guide Jennaya through TDD
 
 ---
 
