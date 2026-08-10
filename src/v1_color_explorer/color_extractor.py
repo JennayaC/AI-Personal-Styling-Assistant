@@ -12,6 +12,8 @@ def extract_colors(image_region: np.ndarray, n_colors: int = 5) -> list[tuple[in
     Returns:
         A list of (R, G, B) tuples representing the dominant colors.
     """
+    if image_region.size == 0:
+        raise ValueError("Image region cannot be empty")
     pixels = image_region.reshape(-1, 3) #The -1 tells numpy to automatically calculate the number of rows
     pixels = pixels[:, ::-1].astype(np.float32) #Flips BGR to RGB and converts values to floats for KMeans
 

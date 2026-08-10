@@ -21,3 +21,10 @@ def test_color_extractor_returns_valid_rgb_tuples():
         assert len(color) == 3, "Each color tuple should have 3 values (R,G,B)."
         assert all (0 <= val <= 255 for val in color), "All values must be between 0 and 255"
 
+#Test if an empty array is passed
+def test_color_extractor_raises_value_error_for_empty_input():
+    empty_region = np.zeros((0, 0, 3), dtype=np.uint8)
+
+    with pytest.raises(ValueError):
+        extract_colors(empty_region, n_colors = 5)
+
