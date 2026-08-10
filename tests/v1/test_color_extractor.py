@@ -10,3 +10,14 @@ def test_color_extractor_returns_correct_number_of_colors():
 
     assert len(result) == 5
 
+#Test to ensure the colors returned are valid
+def test_color_extractor_returns_valid_rgb_tuples():
+    fake_region = np.random.randint(0,256, (10,10,3), dtype=np.uint8)
+    
+    result = extract_colors(fake_region, n_colors = 3)
+
+    for color in result:
+        assert isinstance(color, tuple), "Each color should be a tuple."
+        assert len(color) == 3, "Each color tuple should have 3 values (R,G,B)."
+        assert all (0 <= val <= 255 for val in color), "All values must be between 0 and 255"
+
