@@ -85,13 +85,13 @@ This project follows a strict TDD approach. Every module is built using the
 ## Current Project State (update this section as versions are completed)
 
 ### V1: Color Palette Explorer
-- **Status:** In progress — `image_loader.py` and `region_selector.py` complete with tests
+- **Status:** In progress — `image_loader.py`, `region_selector.py`, and `color_extractor.py` complete with tests
 - **SRS:** `docs/srs_v1.md` ✅ Complete
 - **UML Design:** `docs/uml_design_v1.md` ✅ Approved
 - **Modules to build (in order):**
   1. `src/v1_color_explorer/image_loader.py` — ✅ Complete (3 tests passing)
   2. `src/v1_color_explorer/region_selector.py` — ✅ Complete (2 tests passing)
-  3. `src/v1_color_explorer/color_extractor.py` — Not started
+  3. `src/v1_color_explorer/color_extractor.py` — ✅ Complete (3 tests passing)
   4. `src/v1_color_explorer/color_theory.py` — Not started
   5. `src/v1_color_explorer/palette_display.py` — Not started
   6. `src/v1_color_explorer/main.py` — Not started
@@ -103,8 +103,12 @@ This project follows a strict TDD approach. Every module is built using the
   - `tests/v1/test_region_selector.py` — ✅ 2 tests passing
     - `test_select_region_raises_cancelled`
     - `test_select_region_valid_roi`
-- **Branch:** `feature/region-selector` — complete, merge to main then create `feature/color-extractor`
-- **Next action:** Begin `color_extractor.py` — explain K-Means clustering first, then guide Jennaya through TDD
+  - `tests/v1/test_color_extractor.py` — ✅ 3 tests passing
+    - `test_color_extractor_returns_correct_number_of_colors`
+    - `test_color_extractor_returns_valid_rgb_tuples`
+    - `test_color_extractor_raises_value_error_for_empty_input`
+- **Branch:** `feature/color_extractor` — complete, merge to main then create `feature/color-theory`
+- **Next action:** Begin `color_theory.py` — explain color theory concepts (warm/cool, complementary, analogous) then guide Jennaya through TDD
 
 ---
 
