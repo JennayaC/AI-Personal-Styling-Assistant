@@ -31,3 +31,22 @@ def is_monochromatic(colors:list[Color], threshold = 15.0) -> bool:
         if hue_distance(base_hue, color.hsl[0]) > threshold:
             return False
     return True
+
+def is_analogous(colors:list[Color], threshold = 60.0) -> bool:
+    """Determines if a list of colors is analogous
+    
+    Args:
+        colors: A list of colors to check.
+        
+    Returns:
+        True if the colors are analogous, False otherwise.
+    """
+    if len(colors) <= 1:
+        return True
+    
+    base_hue = colors[0].hsl[0]
+
+    for color in colors[1:]:
+        if hue_distance(base_hue, color.hsl[0]) > threshold:
+            return False
+    return True

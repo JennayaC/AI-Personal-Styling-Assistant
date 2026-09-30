@@ -2,8 +2,8 @@ import pytest
 from src.v1_color_explorer.color_theory import hue_distance
 from src.v1_color_explorer.color_theory import is_monochromatic
 from src.v1_color_explorer.color_theory import is_analogous
-from src.v1_color_explorer.color_theory import is_complementary
-from src.v1_color_explorer.color_theory import is_triadic
+#from src.v1_color_explorer.color_theory import is_complementary
+#from src.v1_color_explorer.color_theory import is_triadic
 from src.v1_color_explorer.models import Color
 
 def test_hue_distance():
