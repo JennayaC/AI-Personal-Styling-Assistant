@@ -1,5 +1,7 @@
 import pytest
 from src.v1_color_explorer.color_theory import hue_distance
+from src.v1_color_explorer.color_theory import is_monochromatic
+from src.v1_color_explorer.models import Color
 
 def test_hue_distance():
     """Tests basic hue distance between angles with a wrap around"""
@@ -15,3 +17,22 @@ def test_hue_distance_identical():
     """Test distance between identical hues is zero"""
     assert hue_distance(180.0, 180.0) == 0
 
+
+def make_color(hue:float) -> Color:
+    """Helper function for making a color to avoid repetitive code"""
+    return Color(hex="#000000", rgb=(0,0,0), hsl=(hue, 0.5, 0.5), percentage=0.2)
+
+def test_monochromatic_true():
+    """Test that monochromatic colors are correctly identified"""
+    colors =[make_color(210.0), make_color(215.0), make_color(220.0)]
+    assert is_monochromatic(colors) is True
+
+def test_monochromatic_false():
+    """Test that non-monochromatic colors are correctly identified"""
+    colors =[make_color(210.0), make_color(230.0), make_color(250.0)]
+    assert is_monochromatic(colors) is False
+
+def test_monochromatic_wrap_around():
+    """Test that monochromatic colors are correctly identified with wrap around"""
+    colors =[make_color(5.0), make_color(355.0)]
+    assert is_monochromatic(colors) is True
