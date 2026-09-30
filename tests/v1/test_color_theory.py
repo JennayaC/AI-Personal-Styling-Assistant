@@ -1,6 +1,9 @@
 import pytest
 from src.v1_color_explorer.color_theory import hue_distance
 from src.v1_color_explorer.color_theory import is_monochromatic
+from src.v1_color_explorer.color_theory import is_analogous
+from src.v1_color_explorer.color_theory import is_complementary
+from src.v1_color_explorer.color_theory import is_triadic
 from src.v1_color_explorer.models import Color
 
 def test_hue_distance():
@@ -36,3 +39,18 @@ def test_monochromatic_wrap_around():
     """Test that monochromatic colors are correctly identified with wrap around"""
     colors =[make_color(5.0), make_color(355.0)]
     assert is_monochromatic(colors) is True
+
+def test_analogous_true():
+    """Test that analogous colors are correctly identified"""
+    colors = [make_color(10.0), make_color(50.0), make_color(35.0)]
+    assert is_analogous(colors) is True
+
+def test_analogous_false():
+    """Test that non-analogous colors are correctly identified"""
+    colors = [make_color(10.0), make_color(90.0), make_color(200.0)]
+    assert is_analogous(colors) is False
+
+def test_analogous_wrap_around():
+    """Test that analogous colors are correctly identified with wrap around"""
+    colors = [make_color(350.0), make_color(10.0), make_color(20.0)]
+    assert is_analogous(colors) is True
