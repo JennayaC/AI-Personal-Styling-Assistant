@@ -54,3 +54,33 @@ def test_analogous_wrap_around():
     """Test that analogous colors are correctly identified with wrap around"""
     colors = [make_color(350.0), make_color(10.0), make_color(20.0)]
     assert is_analogous(colors) is True
+
+def test_complementary_true():
+    """Test that complementary colors are correctly identified"""
+    colors = [make_color(180.0), make_color(0.0)]
+    assert is_complementary(colors) is True
+
+def test_complementary_false():
+    """Test that non-complementary colors are correctly identified"""
+    colors = [make_color(180.0), make_color(90.0)]
+    assert is_complementary(colors) is False
+
+def test_complementary_wrap_around():
+    """Test that complementary colors are correctly identified with wrap around"""
+    colors = [make_color(305.0), make_color(170.0)]
+    assert is_complementary(colors) is True
+
+def test_triadic_true():
+    """Test that triadic colors are correctly identified"""
+    colors = [make_color(180.0), make_color(300.0), make_color(60.0)]
+    assert is_triadic(colors) is True
+
+def test_triadic_false():
+    """Test that non-triadic colors are correctly identified"""
+    colors = [make_color(180.0), make_color(0.0), make_color(200.0)]
+    assert is_triadic(colors) is False
+
+def test_triadic_wrap_around():
+    """Test that triadic colors are correctly identified with wrap around"""
+    colors = [make_color(305.0), make_color(65.0), make_color(185.0)]
+    assert is_triadic(colors) is True
