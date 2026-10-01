@@ -4,7 +4,8 @@ from src.v1_color_explorer.color_theory import is_monochromatic
 from src.v1_color_explorer.color_theory import is_analogous
 from src.v1_color_explorer.color_theory import is_complementary
 from src.v1_color_explorer.color_theory import is_triadic
-from src.v1_color_explorer.models import Color
+from src.v1_color_explorer.color_theory import analyze
+from src.v1_color_explorer.models import Color, ColorRelationship
 
 def test_hue_distance():
     """Tests basic hue distance between angles with a wrap around"""
@@ -89,3 +90,39 @@ def test_triadic_false_two_identical_colors():
     """Test that non-triadic colors are correctly identified"""
     colors = [make_color(180.0), make_color(300.0), make_color(300.0)]
     assert is_triadic(colors) is False
+
+def test_analyze_monochromatic():
+    """Test that the analyze colors function correctly identifies monochromatic colors"""
+    colors = [make_color(210.0), make_color(215.0), make_color(220.0)]
+    relationship = analyze(colors)
+
+    assert isinstance(relationship, ColorRelationship)
+    assert relationship.label == "monochromatic"
+    assert len(relationship.description) > 0
+
+def test_analyze_analogous():
+    """Test that the analyze colors function correctly identifies analogous colors"""
+    colors = [make_color(10.0), make_color(50.0), make_color(35.0)]
+    relationship = analyze(colors)
+
+    assert isinstance(relationship, ColorRelationship)
+    assert relationship.label == "analogous"
+    assert len(relationship.description) > 0
+
+def test_analyze_complementary():
+    """Test that the analyze colors function correctly identifies complementary colors"""
+    colors = [make_color(180.0), make_color(0.0)]
+    relationship = analyze(colors)
+
+    assert isinstance(relationship, ColorRelationship)
+    assert relationship.label == "complementary"
+    assert len(relationship.description) > 0
+
+def test_analyze_triadic():
+    """Test that the analyze colors function correctly identifies triadic colors"""
+    colors = [make_color(180.0), make_color(300.0), make_color(60.0)]
+    relationship = analyze(colors)
+
+    assert isinstance(relationship, ColorRelationship)
+    assert relationship.label == "triadic"
+    assert len(relationship.description) > 0

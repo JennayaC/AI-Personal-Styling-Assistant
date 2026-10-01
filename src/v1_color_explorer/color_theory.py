@@ -1,4 +1,4 @@
-from src.v1_color_explorer.models import Color
+from src.v1_color_explorer.models import Color, ColorRelationship
 
 def hue_distance(h1: float, h2: float) -> float:
     """Calculates the shortest distance between two hue angles in degrees (0-360)
@@ -97,6 +97,26 @@ def is_triadic(colors:list[Color], target: float = 120.0, tolerance: float = 15.
     if abs(distance_3 - target) >= tolerance:
         return False
     return True
+
+def analyze(colors: list[Color]) -> ColorRelationship:
+    """Analyzes a list of colors and determines the color relationship
+    
+    Args:
+        colors: A list of colors to check.
+        
+    Returns:
+        The color relationship.
+    """
+    if is_monochromatic(colors):
+        return ColorRelationship("monochromatic", "The colors are monochromatic")
+    elif is_analogous(colors):
+        return ColorRelationship("analogous", "The colors are analogous")
+    elif is_complementary(colors):
+        return ColorRelationship("complementary", "The colors are complementary")
+    elif is_triadic(colors):
+        return ColorRelationship("triadic", "The colors are triadic")
+    else:
+        return ColorRelationship("unknown", "The colors are not a recognized color relationship")
 
 
 
