@@ -25,7 +25,7 @@ class ColorRelationship:
     Identifies the color relationships of the palette
     """
     
-    label: str
-    description: str
+    label: str #Label for the color relationship
+    description: str #Description of the color relationship
 
 
