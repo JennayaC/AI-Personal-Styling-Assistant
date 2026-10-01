@@ -2,8 +2,8 @@ import pytest
 from src.v1_color_explorer.color_theory import hue_distance
 from src.v1_color_explorer.color_theory import is_monochromatic
 from src.v1_color_explorer.color_theory import is_analogous
-#from src.v1_color_explorer.color_theory import is_complementary
-#from src.v1_color_explorer.color_theory import is_triadic
+from src.v1_color_explorer.color_theory import is_complementary
+from src.v1_color_explorer.color_theory import is_triadic
 from src.v1_color_explorer.models import Color
 
 def test_hue_distance():
@@ -67,7 +67,7 @@ def test_complementary_false():
 
 def test_complementary_wrap_around():
     """Test that complementary colors are correctly identified with wrap around"""
-    colors = [make_color(305.0), make_color(170.0)]
+    colors = [make_color(350.0), make_color(170.0)]
     assert is_complementary(colors) is True
 
 def test_triadic_true():
@@ -84,3 +84,8 @@ def test_triadic_wrap_around():
     """Test that triadic colors are correctly identified with wrap around"""
     colors = [make_color(305.0), make_color(65.0), make_color(185.0)]
     assert is_triadic(colors) is True
+
+def test_triadic_false_two_identical_colors():
+    """Test that non-triadic colors are correctly identified"""
+    colors = [make_color(180.0), make_color(300.0), make_color(300.0)]
+    assert is_triadic(colors) is False

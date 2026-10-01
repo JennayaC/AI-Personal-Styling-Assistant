@@ -50,3 +50,53 @@ def is_analogous(colors:list[Color], threshold = 60.0) -> bool:
         if hue_distance(base_hue, color.hsl[0]) > threshold:
             return False
     return True
+
+def is_complementary(colors:list[Color], target: float = 180.0, tolerance: float = 15.0) -> bool:
+    """Determines if a list of colors is complementary
+    
+    Args:
+        colors: A list of colors to check.
+        
+    Returns:
+        True if the colors are complementary, False otherwise.
+    """
+    if len(colors) != 2:
+        return False
+    
+    base_hue = colors[0].hsl[0]
+
+    for color in colors[1:]:
+        if abs(hue_distance(base_hue, color.hsl[0]) - target) >= tolerance:
+            return False
+    return True
+
+def is_triadic(colors:list[Color], target: float = 120.0, tolerance: float = 15.0) -> bool:
+    """Determines if a list of colors is triadic
+    
+    Args:
+        colors: A list of colors to check.
+        
+    Returns:
+        True if the colors are triadic, False otherwise.
+    """
+    if len(colors) != 3:
+        return False
+    
+    base_hue = colors[0].hsl[0]
+    h1 = colors[1].hsl[0]
+    h2 = colors[2].hsl[0]
+
+    distance_1 = hue_distance(base_hue, h1)
+    distance_2 = hue_distance(h1, h2)
+    distance_3 = hue_distance(h2, base_hue)
+
+    if abs(distance_1 - target) >= tolerance:
+        return False
+    if abs(distance_2 - target) >= tolerance:
+        return False
+    if abs(distance_3 - target) >= tolerance:
+        return False
+    return True
+
+
+
