@@ -5,7 +5,10 @@ from src.v1_color_explorer.models import Color, ColorRelationship
 
 def create_figure(colors: list[Color], relationship: ColorRelationship) -> plt.Figure:
     """Creates a matplotlib Figure object displaying the color palette."""
-    
+
+    if not colors:
+        raise ValueError("Color list cannot be empty")
+
     fig, ax = plt.subplots(figsize=(8, 3))
 
     #Draw a rectangle for each swatch side by side
@@ -25,5 +28,9 @@ def create_figure(colors: list[Color], relationship: ColorRelationship) -> plt.F
 
     return fig
 
+def show_palette(colors: list[Color], relationship: ColorRelationship) -> None:
+    """Shows the color palette."""
+    fig = create_figure(colors, relationship)
+    plt.show()
     
     
